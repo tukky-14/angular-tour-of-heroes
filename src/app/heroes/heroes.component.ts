@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -8,14 +8,22 @@ import { HEROES } from '../mock-heroes';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  // mock-heroes.tsで作成した配列を変数heroesに代入
-  heroes = HEROES;
+  // 変数heroesをHero[]配列として型付け
+  heroes: Hero[];
 
   selectedHero: Hero;
 
-  constructor() { }
+  // サービスのgetHeroes()メソッドの配列データをこのコンポーネントのheroesに代入するメソッドを定義
+  getHeroes(): void {
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+    // this.heroes = this.heroService.getHeroes();
+  }
 
+  constructor(private heroService: HeroService) { }
+
+  // angularがインスタンスを生成した適切なタイミングでメソッドを呼び出す
   ngOnInit(): void {
+    this.getHeroes();
   }
 
   onSelect(hero: Hero): void {

@@ -7,6 +7,7 @@ import { Hero } from '../hero';
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
+  // 親コンポーネントからバインドされたheroを使用できるように@プロパティを使う
   @Input() hero: Hero;
 
   constructor() { }
