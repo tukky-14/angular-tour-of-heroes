@@ -11,15 +11,5 @@
   </li>
 </ul>
 
-<!-- selectedHeroが存在しているときだけブロックを表示させる -->
-<div *ngIf="selectedHero">
-  <!-- hero.tsで型付け→component.tsの変数を呼び出し -->
-  <h2>{{ selectedHero.name | uppercase }} Details</h2>
-  <div><span>id: </span>{{ selectedHero.id }}</div>
-  <div>
-    <label
-      >name:
-      <input [(ngModel)]="selectedHero.name" placeholder="name" />
-    </label>
-  </div>
-</div>
+<!-- hero-detailを子コンポーネントとして呼び出し。selectedHeroプロパティをheroプロパティとしてバインドしている -->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
