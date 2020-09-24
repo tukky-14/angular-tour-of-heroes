@@ -1,8 +1,25 @@
-<!-- hero.tsで型付け→component.tsの変数を呼び出し -->
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div>
-  <label>name:
-    <input [(ngModel)]="hero.name" placeholder="name">
-  </label>
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <!-- heroes配列からheroとしてfor文で繰り返す -->
+  <!-- 現在の行のヒーローがselectedHeroと同じならCSSクラスを追加 -->
+  <li
+    [class.selected]="hero === selectedHero"
+    *ngFor="let hero of heroes"
+    (click)="onSelect(hero)"
+  >
+    <span class="badge">{{ hero.id }}</span> {{ hero.name }}
+  </li>
+</ul>
+
+<!-- selectedHeroが存在しているときだけブロックを表示させる -->
+<div *ngIf="selectedHero">
+  <!-- hero.tsで型付け→component.tsの変数を呼び出し -->
+  <h2>{{ selectedHero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{ selectedHero.id }}</div>
+  <div>
+    <label
+      >name:
+      <input [(ngModel)]="selectedHero.name" placeholder="name" />
+    </label>
+  </div>
 </div>
