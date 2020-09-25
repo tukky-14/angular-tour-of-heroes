@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // locationはブラウザと対話するためのAngularサービス
 import { Location } from '@angular/common';
@@ -13,7 +13,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   // 親コンポーネントからバインドされたheroを使用できるように@プロパティを使う
-  hero: Hero;
+  @Input() hero: Hero;
 
   constructor(
     private route: ActivatedRoute,
