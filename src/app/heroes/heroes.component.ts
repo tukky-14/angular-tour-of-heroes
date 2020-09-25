@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -14,24 +13,15 @@ export class HeroesComponent implements OnInit {
   // 変数heroesをHero[]配列として型付け
   heroes: Hero[];
 
-  selectedHero: Hero;
-
-  constructor(private heroService: HeroService, private messageService: MessageService) { }
+  constructor(private heroService: HeroService) { }
 
   // angularがインスタンスを生成した適切なタイミングでメソッドを呼び出す
   ngOnInit(): void {
     this.getHeroes();
   }
 
-  // ヒーローが選択されたときに呼び出されるメソッド
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponet: Selected hero id=${hero.id}`);
-  }
-
   // サービスのgetHeroes()メソッドの配列データをこのコンポーネントのheroesに代入するメソッドを定義
   getHeroes(): void {
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
-    // this.heroes = this.heroService.getHeroes();
   }
 }
